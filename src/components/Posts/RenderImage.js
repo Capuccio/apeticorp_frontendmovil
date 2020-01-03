@@ -6,7 +6,7 @@ const renderUploadImage = props => {
   if (props.media.indexOf("file") > -1) {
     direction = props.media;
   } else {
-    direction = `http://192.168.42.106:5000/${props.media}`;
+    direction = `https://apeticorp-backend.herokuapp.com/${props.media}`;
   }
 
   if (props.media.length === 0) {
