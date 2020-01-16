@@ -32,7 +32,7 @@ const HeaderHome = props => {
     <SafeAreaView style={styles.ContainerTextPosts}>
       <Text style={styles.NumbeRefe}>{UserData.use_numberefe}/50</Text>
       <Text style={styles.TextPosts} onPress={createPosts}>
-        ¿Que desear publicar?
+        ¿Que desea publicar?
       </Text>
       <TouchableOpacity onPress={notificationsPage}>
         <MaterialIcons name="notifications" size={28} color="red" />

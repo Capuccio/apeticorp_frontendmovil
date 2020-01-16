@@ -9,7 +9,6 @@ import PostOptions from "../components/Posts/PostOptions";
 const Posts = props => {
   const [UserData, setUserData] = useState({});
   var likeColor;
-  // const Image64 = "data:image/jpg;base64," + props.contentMedia;
 
   useEffect(() => {
     getUserData = async () => {
@@ -33,7 +32,10 @@ const Posts = props => {
 
   return (
     <View style={styles.Card}>
-      <PostsOwner userName={`${UserData.use_name} ${UserData.use_lastname}`} />
+      <PostsOwner
+        userName={`${UserData.use_name} ${UserData.use_lastname}`}
+        pictureProfile={UserData.use_picture}
+      />
       <RenderImage media={props.contentMedia} />
       <PostsText contentText={props.contentText} />
       <Text style={styles.LikesText}> {props.likesNumber.length} Me gusta</Text>

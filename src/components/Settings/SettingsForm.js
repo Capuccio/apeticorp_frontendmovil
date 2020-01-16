@@ -39,10 +39,6 @@ const SettingsForm = props => {
         onChangeText={mobile => props.handleText("use_mobile", mobile)}
         maxLength={10}
       />
-
-      <View>
-        <Button title="Guardar" onPress={props.sendNewData} />
-      </View>
     </View>
   );
 };

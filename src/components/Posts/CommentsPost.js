@@ -9,8 +9,8 @@ const CommentsPost = props => {
     getUser = async () => {
       let answer = await api.getUserData(props.id_user);
 
-      if (user.error) {
-        Alert.alert(user.title, user.msg);
+      if (answer.error) {
+        Alert.alert(answer.title, answer.msg);
       } else {
         setUserData(answer.user);
       }

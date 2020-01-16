@@ -1,14 +1,7 @@
 import React from "react";
-import { View, Image, StyleSheet, Dimensions } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 
 const renderUploadImage = props => {
-  var direction;
-  if (props.media.indexOf("file") > -1) {
-    direction = props.media;
-  } else {
-    direction = `https://apeticorp-backend.herokuapp.com/${props.media}`;
-  }
-
   if (props.media.length === 0) {
     return <View style={styles.Container}></View>;
   } else {
@@ -16,7 +9,7 @@ const renderUploadImage = props => {
       <View style={styles.Container}>
         <Image
           source={{
-            uri: direction
+            uri: props.media
           }}
           style={styles.Image}
         />
@@ -24,8 +17,6 @@ const renderUploadImage = props => {
     );
   }
 };
-
-const dimensions = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   Container: {

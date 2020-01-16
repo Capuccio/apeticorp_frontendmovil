@@ -13,6 +13,7 @@ const Loading = props => {
     const checkingLocalStorage = async () => {
       try {
         let userData = await AsyncStorage.getItem("user_data");
+        console.log(userData);
 
         if (userData) {
           await AsyncStorage.removeItem("user_data");

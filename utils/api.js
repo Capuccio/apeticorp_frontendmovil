@@ -1,4 +1,5 @@
-const BASE_API = "https://apeticorp-backend.herokuapp.com/";
+// const BASE_API = "https://apeticorp-backend.herokuapp.com/";
+const BASE_API = "http://192.168.42.106:5000/";
 
 class Api {
   createHeader(data) {

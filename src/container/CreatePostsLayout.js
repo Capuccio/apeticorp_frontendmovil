@@ -27,8 +27,6 @@ const CreatePostsLayout = props => {
     userName: "",
     postText: "",
     fileRoute: "",
-    name: "",
-    type: "",
     media: ""
   });
 
@@ -59,17 +57,9 @@ const CreatePostsLayout = props => {
   };
 
   handleMedia = async image => {
-    let mediaNameFormat = image.uri.split("/").pop();
-    let changeFormat = mediaNameFormat.split(".");
-    changeFormat.pop();
-    changeFormat.push("jpg");
-    let mediaName = changeFormat.join(".");
-
     setPost({
       ...Post,
       fileRoute: image.uri,
-      name: mediaName,
-      type: image.type,
       media: image.base64
     });
   };
@@ -146,9 +136,7 @@ const CreatePostsLayout = props => {
         sendPost: "Publicar post"
       });
 
-      let title = answer.error ? "Error" : "Imagen subida";
-
-      Alert.alert(title, answer.msg);
+      Alert.alert(answer.title, answer.msg);
     }
   };
 
