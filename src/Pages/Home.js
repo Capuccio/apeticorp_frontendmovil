@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   ActivityIndicator,
   Alert,
@@ -25,10 +24,10 @@ const Home = props => {
 
   useEffect(() => {
     getNewPosts("pageLoading", 1);
-  }, [props]);
+  }, []);
 
   getNewPosts = async (whatRefresh, newPage) => {
-    let posts = await getAllPosts(newPage);
+    let posts = await getAllPosts(newPage, 1);
     setPostsData(posts);
 
     setPagePost(2);
@@ -48,7 +47,7 @@ const Home = props => {
       footerLoading: true
     });
 
-    let posts = await getAllPosts(PagePost);
+    let posts = await getAllPosts(PagePost, 1);
     if (posts.length > 0) {
       let principalArray = PostsData.slice();
 
@@ -64,12 +63,12 @@ const Home = props => {
     });
   };
 
-  getAllPosts = async Page => {
+  getAllPosts = async (Page, Status) => {
     try {
       let connectionData = await Network.getNetworkStateAsync();
 
       if (connectionData.isConnected) {
-        let data = await Api.getAllPosts(Page);
+        let data = await Api.getAllPosts(Page, Status);
 
         if (data.error) {
           Alert.alert(data.msg);

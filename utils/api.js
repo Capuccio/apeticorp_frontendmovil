@@ -51,9 +51,9 @@ class Api {
     return answer;
   }
 
-  async getAllPosts(data) {
+  async getAllPosts(page, status) {
     const ans = await fetch(
-      `${BASE_API}posts/${data}`,
+      `${BASE_API}posts/${page}/${status}`,
       this.createHeader({ method: "GET", content: "application/json" })
     );
     const answer = await ans.json();
@@ -133,6 +133,25 @@ class Api {
   async getNotifications(data) {
     const ans = await fetch(`${BASE_API}notifications/${data}`);
     const answer = await ans.json();
+    return answer;
+  }
+
+  async updateNotifications(data) {
+    const ans = await fetch(`${BASE_API}updatenotifications/${data}`);
+    const answer = await ans.json();
+    return answer;
+  }
+
+  async deletePost(idPost) {
+    const ans = await fetch(
+      `${BASE_API}deletepost`,
+      this.createHeader({
+        method: "POST",
+        body: idPost,
+        content: "application/json"
+      })
+    );
+    const answer = ans.json();
     return answer;
   }
 }

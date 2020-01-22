@@ -35,6 +35,8 @@ const Posts = props => {
       <PostsOwner
         userName={`${UserData.use_name} ${UserData.use_lastname}`}
         pictureProfile={UserData.use_picture}
+        level={props.myAccount.use_level}
+        idPost={props._id}
       />
       <RenderImage media={props.contentMedia} />
       <PostsText contentText={props.contentText} />

@@ -30,11 +30,10 @@ const Login = props => {
       if (loginAnswer.error) {
         Alert.alert(loginAnswer.msg);
       } else {
+        let { msg } = loginAnswer;
+
         try {
-          await AsyncStorage.setItem(
-            "user_data",
-            JSON.stringify(loginAnswer.msg)
-          );
+          await AsyncStorage.setItem("user_data", JSON.stringify(msg));
 
           props.navigation.navigate("Loading");
         } catch (error) {

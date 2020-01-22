@@ -11,7 +11,7 @@ const PostsText = props => {
 
 const styles = StyleSheet.create({
   Container: {
-    paddingVertical: 15,
+    paddingVertical: 10,
     paddingHorizontal: 10
   },
   Text: {

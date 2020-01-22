@@ -39,6 +39,7 @@ const CreatePostsLayout = props => {
         setPost({
           ...Post,
           id_user: userData.id_users,
+          pictureProfile: userData.use_picture,
           userName: `${userData.use_name} ${userData.use_lastname}`
         });
       } catch (error) {
@@ -142,7 +143,10 @@ const CreatePostsLayout = props => {
 
   return (
     <View style={styles.Container}>
-      <PostsOwner userName={Post.userName} />
+      <PostsOwner
+        userName={Post.userName}
+        pictureProfile={Post.pictureProfile}
+      />
       <CreatePostsMsg handleText={handleText} />
       <RenderImage media={Post.fileRoute} />
 
@@ -168,7 +172,7 @@ const CreatePostsLayout = props => {
 const styles = StyleSheet.create({
   Container: {
     paddingHorizontal: 5,
-    paddingTop: 10
+    paddingTop: 0
   }
 });
 

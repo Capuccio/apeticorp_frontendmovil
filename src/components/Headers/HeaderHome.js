@@ -10,15 +10,28 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import api from "../../../utils/api";
 
-const HeaderHome = props => {
+const HeaderHome = () => {
   const [UserData, setUserData] = useState({});
+  const [notifications, setNotifications] = useState(false);
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         let user = await AsyncStorage.getItem("user_data");
-        setUserData(JSON.parse(user));
+        let userJson = JSON.parse(user);
+        setUserData(userJson);
+
+        let { notifications } = await api.getNotifications(userJson.id_users);
+        for (let i = 0; i < notifications.length; i++) {
+          if (notifications[i].not_status === 1) {
+            setNotifications(true);
+            break;
+          } else {
+            setNotifications(false);
+          }
+        }
       } catch (error) {
         console.log(`Hubo un error al obtener los datos: ${error}`);
         Alert.alert("Hubo un error");
@@ -34,8 +47,17 @@ const HeaderHome = props => {
       <Text style={styles.TextPosts} onPress={createPosts}>
         ¿Que desea publicar?
       </Text>
-      <TouchableOpacity onPress={notificationsPage}>
-        <MaterialIcons name="notifications" size={28} color="red" />
+      <TouchableOpacity
+        onPress={() => {
+          setNotifications(false);
+          notificationsPage();
+        }}
+      >
+        {notifications ? (
+          <MaterialIcons name="notifications" size={28} color="red" />
+        ) : (
+          <MaterialIcons name="notifications-none" size={28} color="red" />
+        )}
       </TouchableOpacity>
     </SafeAreaView>
   );

@@ -20,15 +20,12 @@ const renderUploadImage = props => {
 
 const styles = StyleSheet.create({
   Container: {
-    alignItems: "center",
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: "rgba(0, 0, 0, .15)"
+    alignItems: "center"
   },
   Image: {
     width: "100%",
     height: 400,
-    resizeMode: "contain",
+    resizeMode: "cover",
     backgroundColor: "transparent"
   }
 });

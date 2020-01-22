@@ -9,6 +9,7 @@ const CommentsPostList = props => {
 
   return (
     <FlatList
+      inverted={true}
       data={props.comments}
       renderItem={renderItem}
       keyExtractor={item => item._id}

@@ -10,19 +10,28 @@ import {
 import Tips from "../components/Tips";
 import Api from "../../utils/api";
 
-const Notifications = props => {
+const Notifications = () => {
   const [Notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     getNotifications = async () => {
       let user = await AsyncStorage.getItem("user_data");
       let userJson = JSON.parse(user);
+
       let answer = await Api.getNotifications(userJson.id_users);
+
       if (answer.error) {
         Alert.alert(answer.title, answer.msg);
       } else {
         setNotifications(answer.notifications);
+        let updated = await Api.updateNotifications(userJson.id_users);
+
+        if (updated.error) {
+          Alert.alert(updated.title, updated.msg);
+        }
       }
+
+      return;
     };
 
     getNotifications();

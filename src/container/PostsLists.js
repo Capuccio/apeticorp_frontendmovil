@@ -35,7 +35,7 @@ const PostsLists = props => {
       ItemSeparatorComponent={ItemSeparatorComponent}
       keyExtractor={item => item._id}
       refreshing={props.loading.refreshLoading}
-      onRefresh={() => props.getNewPosts("refreshLoading")}
+      onRefresh={() => props.getNewPosts("refreshLoading", 1)}
       onEndReached={info => props.getOldPosts()}
       onEndReachedThreshold={0.5}
       ListFooterComponent={

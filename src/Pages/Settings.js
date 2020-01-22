@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
-  Text,
   AsyncStorage,
   StyleSheet,
   Alert,
@@ -18,7 +17,9 @@ const REGULAR_EXPRESION_EMAIL = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\
 const Settings = props => {
   const [UserData, setUserData] = useState({
     fileRoute: "",
-    media: ""
+    media: "",
+    use_password: "",
+    use_mobile: ""
   });
   const [Buttons, setButtons] = useState({
     disabled: false,
@@ -31,8 +32,6 @@ const Settings = props => {
     getLocalData = async () => {
       let userLocalData = await AsyncStorage.getItem("user_data");
       let dataJson = JSON.parse(userLocalData);
-      dataJson.use_password = "";
-      dataJson.use_mobile = "";
       setUserData(User => {
         return {
           ...User,
@@ -82,19 +81,6 @@ const Settings = props => {
     } else {
       const answer = await Api.updateUser(UserData);
       Alert.alert(answer.title, answer.msg);
-
-      if (!answer.error) {
-        try {
-          await AsyncStorage.removeItem("user_data");
-          await AsyncStorage.setItem("user_data", JSON.stringify(UserData));
-        } catch (error) {
-          Alert.alert(
-            "Error Local",
-            "Hubo un error al tratar de actualizar los datos en caché"
-          );
-          console.log(error);
-        }
-      }
     }
   };
 
